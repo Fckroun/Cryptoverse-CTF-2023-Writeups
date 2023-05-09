@@ -1,20 +1,20 @@
 # Pwn/Acceptance
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled.png)
+![Untitled](Pwn%20Acceptance/Untitled.png)
 
 I downloaded the file and checked it with checksec:
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%201.png)
+![Untitled](Pwn%20Acceptance/Untitled%201.png)
 
 I tried to execute the binary:
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%202.png)
+![Untitled](Pwn%20Acceptance/Untitled%202.png)
 
 It takes the input (**abcd**) and outputs a message which is not the flag obviously x)
 
 It felt like debugging time so i fired up **pwndbg:**
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%203.png)
+![Untitled](Pwn%20Acceptance/Untitled%203.png)
 
 Disassembling and looking at the **main** function, i noticed :
 
@@ -25,7 +25,7 @@ Disassembling and looking at the **main** function, i noticed :
 
 Using radare2 i was able to better understand the code flow.
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%204.png)
+![Untitled](Pwn%20Acceptance/Untitled%204.png)
 
 The **test eax, eax** and the **je** instruction decides whether we get the **flag** or **“Arg! Why don't you help me :((”.**
 
@@ -33,17 +33,17 @@ It performs a bitwise logical operation between the value in the **eax** registe
 
 I added a breakpoint at this instruction to check the value of eax at the moment of the test.
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%205.png)
+![Untitled](Pwn%20Acceptance/Untitled%205.png)
 
 And passed a 36 bytes cyclic string as input 😈
 
 When the breakpoint hits, RAX’s value seemed familiar ( a cyclic portion).
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%206.png)
+![Untitled](Pwn%20Acceptance/Untitled%206.png)
 
 After identifying the offset, i wrote a python script to send **32** byte string concatenated to **4 \xff bytes** to meet the condition.
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%207.png)
+![Untitled](Pwn%20Acceptance/Untitled%207.png)
 
 ```python
 from pwn import *
@@ -66,6 +66,6 @@ print(offset)
 """
 ```
 
-![Untitled](Pwn%20Acceptance%201b460d4be1b743738146333882584d35/Untitled%208.png)
+![Untitled](Pwn%20Acceptance/Untitled%208.png)
 
 Made By Fckroun with <3
