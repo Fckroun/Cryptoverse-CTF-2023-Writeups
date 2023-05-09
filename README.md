@@ -23,3 +23,5 @@ Hope you can have some fun!
 [Misc/Baby calculator](Cryptoverse%20CTF%202023/Misc%20Baby%20calculator.md)
 
 [Reverse/Simple Checkin](Cryptoverse%20CTF%202023/Reverse%20Simple%20Checkin.md)
+
+[Pwn/Acceptance](Cryptoverse%20CTF%202023/Pwn%20Acceptance.md)
